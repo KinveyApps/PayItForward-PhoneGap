@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kinvey.payitforward"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="7" />
+
+    <supports-screens 
+        android:largeScreens="true" 
+        android:normalScreens="true" 
+        android:smallScreens="true" 
+        android:resizeable="true" 
+        android:anyDensity="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".PayItForwardActivity"
+            android:label="@string/app_name"
+            android:configChanges="orientation|keyboardHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.urbanairship.CoreReceiver" >
+           <intent-filter >
+                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+           </intent-filter>
+        </receiver>
+        <service android:name="com.urbanairship.push.PushService" />
+        <receiver android:name="com.kinvey.push.IntentReceiver" />
+    </application>
+
+</manifest>
