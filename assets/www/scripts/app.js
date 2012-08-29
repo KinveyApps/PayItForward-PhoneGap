@@ -7,14 +7,23 @@
   // Configure Kinvey.
   Kinvey.init({
     appKey: '<your-app-key>',
-    appSecret: '<your-app-secret>'
+    appSecret: '<your-app-secret>',
+    sync: true
   });
+  App.facebookAppId = '<your-facebook-app-id>';
 
   /**
    * Define application-domain entities and collections.
    */
   // Define the base entity. Not accessible from outside current scope.
   var Entity = Kinvey.Entity.extend({
+    // Override constructor to use the OfflineStore.
+    constructor: function(attr, collection) {
+      Kinvey.Entity.prototype.constructor.call(this, attr, collection, {
+        store: Kinvey.Store.OFFLINE
+      });
+    },
+
     // Convenience shortcut for returning the last modified date.
     added: function() {
       return this.getMetadata().lastModified();
@@ -39,6 +48,13 @@
 
   // Define the base collection. Not accessible from outside current scope.
   var Collection = Kinvey.Collection.extend({
+    // Override constructor to use the OfflineStore.
+    constructor: function(collection, options) {
+      options || (options = {});
+      options.store = Kinvey.Store.OFFLINE;
+      Kinvey.Collection.prototype.constructor.call(this, collection, options);
+    },
+
     // Upper and lower range of entities retrieved.
     oldest: null,
     newest: null,
@@ -109,7 +125,7 @@
     // Override parent settings.
     entity: App.Request,
     constructor: function(query) {
-      Collection.prototype.constructor.call(this, 'requests', query);
+      Collection.prototype.constructor.call(this, 'requests', { query: query });
     }
   });
   App.RequestCollection = new RequestCollection();// Application instance.
@@ -118,7 +134,7 @@
   var ForwardCollection = Collection.extend({
     entity: App.Forward,
     constructor: function(query) {
-      Collection.prototype.constructor.call(this, 'forwards', query);
+      Collection.prototype.constructor.call(this, 'forwards', { query: query });
     },
 
     // Retrieves leaderboard of users who forwarded the most requests.

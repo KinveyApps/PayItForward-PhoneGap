@@ -50,5 +50,6 @@
     <plugin name="Battery" value="org.apache.cordova.BatteryListener"/>
     <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
     <plugin name="PushNotification" value="com.kinvey.push.PushNotification" />
+    <plugin name="org.apache.cordova.facebook.Connect" value="org.apache.cordova.facebook.ConnectPlugin" />
 </plugins>
 </cordova>
