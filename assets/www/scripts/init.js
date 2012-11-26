@@ -1,5 +1,4 @@
 (function($) {
-
   // Configure jQuery Mobile.
   // @link http://jquerymobile.com/demos/1.1.0/docs/api/globalconfig.html
   $(document).bind('mobileinit', function() {
@@ -18,7 +17,6 @@
 
   /**
    * Flood protection and loading indicator.
-   * 
    */
   $.fn.loading = function(flag) {
     // Return loading state.
@@ -45,5 +43,4 @@
       $.mobile.hidePageLoadingMsg();
     }
   };
-
 }(jQuery));
