@@ -37,4 +37,4 @@ The app uses Urban Airship to enable push notifications. The code connecting Jav
 
 This bridging technique is described in more detail in the [PhoneGap Plugins Wiki](http://docs.phonegap.com/en/2.0.0/guide_plugin-development_index.md.html).
 
-![Receiving a push message](https://github.com/KinveyApps/PayItForward-PhoneGap/blob/master/screenshot-push.png)
+![Receiving a push message](https://raw.github.com/KinveyApps/PayItForward-PhoneGap/master/screenshot-push.png)
